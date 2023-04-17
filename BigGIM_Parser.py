@@ -400,7 +400,9 @@ def parse_edge_attributes(row, column_names):
     return edge_attributes
 
 
-def load_tsv_data(file_path):
+def load_tsv_data(file_path, attribute_data_source):
+    attribute_source = "infores:biothings-multiomics-biggim-drugresponse"
+    
     file_formated = pd.read_csv(file_path)
     file_formated = file_formated.dropna()
     if not header_check(file_formated):
@@ -425,13 +427,25 @@ def load_tsv_data(file_path):
             "edge_label": predicates,
             "edge_attributes": edge_attributes
         }
+        
+        edge_sources = [
+            {
+                "resource_id": attribute_source,
+                "resource_role": "primary_knowledge_source"
+            },
+            {
+                "resource_id": attribute_data_source,
+                "resource_role": "supporting_data_source"
+            }
+        ]
 
         json = {
             # "_id":'-'.join(unique_id_list),
             "_id": subject_json["type"] + "_" + predicates + "_" + object_json["type"] + "_" + file_path.split("/")[-1] + "_" + str(index),
             "subject": subject_json,
             "association": association_json,
-            "object": object_json
+            "object": object_json,
+            "sources": edge_sources
         }
         yield json
 
@@ -452,7 +466,23 @@ def load_data(data_folder):
         "GTEX_liver_negative_correlated_formated.csv",
         "GTEX_liver_positively_correlated_formated.csv"
     ]
+    data_sources = [
+        "infores:gdsc",
+        "infores:gdsc",
+        "infores:tcga",
+        "???",
+        "infores:gdsc",
+        "???",
+        "???",
+        "???",
+        "???",
+        "???",
+        "???",
+        "infores:gtex",
+        "infores:gtex"
+    ]
+        
     file_paths = [os.path.join(data_folder, fn) for fn in file_names]
-    for file_path in file_paths:
-        for json in load_tsv_data(file_path):
+    for (file_path, source) in zip(file_paths, data_sources):
+        for json in load_tsv_data(file_path, source):
             yield json
