@@ -86,7 +86,7 @@ DIC_XREF = {
     "CHEMBL": "https://www.ebi.ac.uk/chembl/compound_report_card/CHEMBL",
     "ENSEMBL": "https://uswest.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=",
     "NCIT": "https://ontobee.org/ontology/NCIT?iri=http://purl.obolibrary.org/obo/NCIT_",
-    "CellOntology":"http://purl.obolibrary.org/obo/"
+    "CL":"http://purl.obolibrary.org/obo/"
 }
 
 
@@ -159,10 +159,11 @@ def _parse_party(row, party):
         raw_id = int(raw_id)
     raw_id = str(raw_id)
 
-    if prefix == "MONDO" or prefix == "CellOntology":
+    if prefix == "MONDO" or prefix == "CL":
         _id = raw_id
     else:
         _id = f"{prefix}:{raw_id}"
+
 
     xref = get_xref(prefix, raw_id)
 
