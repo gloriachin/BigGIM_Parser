@@ -575,7 +575,8 @@ def load_data(data_folder):
         "HuRI_formated.csv",
         "Yang-16_formated.csv",
         "GTEX_liver_negative_correlated_formated.csv",
-        "GTEX_liver_positively_correlated_formated.csv"
+        "GTEX_liver_positively_correlated_formated.csv",
+        "cellmarker.csv"
     ]
     file_paths = [os.path.join(data_folder, fn) for fn in file_names]
     for file_path in file_paths:

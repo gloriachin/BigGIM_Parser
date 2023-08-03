@@ -41,6 +41,9 @@ KG_df7 = pd.read_csv(KG_file7, sep=',')
 
 # Msig DB
 
+#CellMarker
+KG_file8 = KG_dir1 + "cellmarker.csv"
+KG_df8 = pd.read_csv(KG_file8, sep = ',')
 
 #unique predicates
 unique_predicates = set(list(set(KG_df1.predicate.unique())) 
@@ -50,6 +53,7 @@ unique_predicates = set(list(set(KG_df1.predicate.unique()))
                 + list(set(KG_df5.predicate.unique()))
                 + list(set(KG_df6.predicate.unique()))
                 + list(set(KG_df7.predicate.unique()))
+		+ list(set(KG_df8.predicate.unique()))
                 )
 
 #unique subject and object nodes
@@ -67,6 +71,8 @@ unique_subject_object_nodes = set(list(set(KG_df1.subject_id.unique()))
                                 +list(set(KG_df5.object_id.unique()))
                                 +list(set(KG_df6.object_id.unique()))
                                 +list(set(KG_df7.object_id.unique()))
+				+list(set(KG_df8.subject_id.unique()))
+				+list(set(KG_df8.object_id.unique()))
                                 )
 
 
