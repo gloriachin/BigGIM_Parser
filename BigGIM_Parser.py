@@ -167,6 +167,9 @@ def _parse_party(row, party):
 
     xref = get_xref(prefix, raw_id)
 
+    if prefix == "CL":
+        _id = f"{prefix}"+":"+f"{raw_id}".split('_')[1]
+
     json = {
         "id": _id,
         prefix_field_name: _id,
