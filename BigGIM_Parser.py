@@ -482,7 +482,7 @@ def parse_source_attribute(row, column_names):
             source_attributes.append({
                 "resource_id":  "infores:biothings-multiomics-biggim-drugresponse",
                 "resource_role": "aggregator_knowledge_source",
-                "upstream_resource_ids": source
+                "upstream_resource_ids": [source]
             })
         else:
             source_attributes.append({
