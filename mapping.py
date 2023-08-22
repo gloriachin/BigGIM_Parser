@@ -41,7 +41,13 @@ def custom_mapping(cls):
                 "NCBIGene": {
                     "normalizer": "keyword_lowercase_normalizer",
                     "type": "keyword"
-                }
+                },
+                "CellOntology":{
+                    "normalizer": "keyword_lowercase_normalizer",
+                    "type": "keyword"},
+                "CL":{
+                    "normalizer": "keyword_lowercase_normalizer",
+                    "type": "keyword"},
             }
         },
         "object": {
@@ -73,7 +79,13 @@ def custom_mapping(cls):
                 "pubchem_compound": {
                     "normalizer": "keyword_lowercase_normalizer",
                     "type": "keyword"
-                }
+                },
+                "CellOntology":{
+                    "normalizer": "keyword_lowercase_normalizer",
+                    "type": "keyword"},
+                "CL":{  
+                    "normalizer": "keyword_lowercase_normalizer",
+                    "type": "keyword"},
             }
         },
         "predicate": {
